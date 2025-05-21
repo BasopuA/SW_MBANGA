@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SW Mbanga School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #d40000;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+        .event-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .event-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .event-image:hover {
+            transform: scale(1.02);
+        }
+        .event-content {
+            padding: 1rem;
+        }
+        .event-title {
+            color: #d40000;
+            margin-top: 0;
+        }
+        .footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .admin-link {
+            color: white;
+            background: #d40000;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 1rem;
+        }
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .social-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .social-icon {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            text-align: center;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .lightbox-img {
+            max-height: 80vh;
+            max-width: 80vw;
+            border: 3px solid white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .lightbox-nav {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .lightbox-nav button {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 24px;
+            cursor: pointer;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SW MBANGA SCHOOL</h1>
+        <p>Mcubakazi Township, Butterworth, Eastern Cape</p>
+    </div>
+
+    <main>
+        <h2 style="text-align: center;">LATEST EVENTS</h2>
+        
+        <div class="events-container">
+            {% for event in events %}
+            <div class="event-card">
+                {% if event.photos.all %}
+                <img src="{{ event.photos.first.image.url }}" 
+                     class="event-image" 
+                     alt="{{ event.title }}"
+                     onclick="openLightbox('{{ event.photos.first.image.url }}')">
+                {% endif %}
+                <div class="event-content">
+                    <h3 class="event-title">{{ event.title }}</h3>
+                    <p>{{ event.description }}</p>
+                    <small>Posted on: {{ event.date_posted|date:"M d, Y" }}</small>
+                    
+                    <!-- Thumbnail gallery for all event photos -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">
+                        {% for photo in event.photos.all %}
+                        <img src="{{ photo.image.url }}" 
+                             style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;" 
+                             onclick="openLightbox('{{ photo.image.url }}')">
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No events found</p>
+            {% endfor %}
+        </div>
+
+        <form method="get" action="{% url 'search_events' %}" style="text-align: center; margin: 2rem;">
+            <input type="number" name="year" placeholder="Enter year" required>
+            <button type="submit">Search Events</button>
+        </form>
+    </main>
+
+    <!-- Lightbox HTML -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-nav">
+            <button onclick="changeImage(-1)">❮</button>
+            <button onclick="changeImage(1)">❯</button>
+        </div>
+        <div class="lightbox-content">
+            <img id="lightbox-img" class="lightbox-img" src="">
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="social-links">
+            <a href="#" class="social-link">
+                <span class="social-icon"><i class="fas fa-info-circle"></i></span>
+                About Us
+            </a>
+            <a href="#" class="social-link">
+                <span class="social-icon"><i class="fab fa-facebook-f"></i></span>
+                Facebook
+            </a>
+            <a href="#" class="social-link">
+                <span class="social-icon"><i class="fab fa-twitter"></i></span>
+                Twitter
+            </a>
+            <a href="#" class="social-link">
+                <span class="social-icon"><i class="fab fa-instagram"></i></span>
+                Instagram
+            </a>
+        </div>
+        <a href="/admin" class="admin-link">ADMIN LOGIN</a>
+        <p>&copy; SW Mbanga School {{ current_year }}</p>
+    </div>
+
+    <script>
+        // Lightbox functionality
+        let currentImageIndex = 0;
+        let images = [];
+        
+        function openLightbox(imageSrc) {
+            // Get all images on the page
+            const allImages = document.querySelectorAll('.event-image, .event-content img');
+            images = Array.from(allImages).map(img => img.src);
+            
+            // Find the clicked image index
+            currentImageIndex = images.indexOf(imageSrc);
+            
+            // Display the lightbox
+            document.getElementById('lightbox').style.display = 'block';
+            document.getElementById('lightbox-img').src = imageSrc;
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+        
+        function changeImage(step) {
+            currentImageIndex += step;
+            
+            // Wrap around if at beginning/end
+            if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            }
+            
+            document.getElementById('lightbox-img').src = images[currentImageIndex];
+        }
+        
+        // Close lightbox when clicking outside image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lightbox').style.display === 'block') {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    changeImage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeImage(1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
