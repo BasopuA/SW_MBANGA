@@ -1,0 +1,10 @@
+{"builds" : [{
+    "src":"sw_mbanga/wsgi.py",
+    "use": "@vercel/python",
+    "config":{"maxLambdaSize":"15mb","runtime":"python3.13.3"}
+
+}],
+"routs":"/(.*)",
+"dest":"sw_mbanga/wsgi.py"
+
+}
