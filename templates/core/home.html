@@ -11,85 +11,256 @@
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
+            color: #333;
         }
+
         .header {
             background-color: #d40000;
             color: white;
             text-align: center;
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .events-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .event-container {
+            display: flex;
+            flex-wrap: wrap;
             gap: 2rem;
-            padding: 0 2rem;
+            margin-bottom: 3rem;
         }
+
         .event-card {
+            flex: 1;
+            min-width: 300px;
             background: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+
+        .event-image-container {
+            position: relative;
+        }
+
         .event-image {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
             cursor: pointer;
             transition: transform 0.3s;
         }
+
         .event-image:hover {
             transform: scale(1.02);
         }
+
         .event-content {
-            padding: 1rem;
+            padding: 1.5rem;
         }
+
         .event-title {
             color: #d40000;
             margin-top: 0;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
         }
-        .footer {
-            background-color: #000;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
+
+        .event-description {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            white-space: pre-line; /* Preserves line breaks in the text */
         }
-        .admin-link {
-            color: white;
-            background: #d40000;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
+
+        .event-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .thumbnail-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 1rem;
+        }
+
+        .thumbnail {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: border-color 0.3s;
+        }
+
+        .thumbnail:hover {
+            border-color: #d40000;
+        }
+
+        .info-sidebar {
+            flex: 0 0 300px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card h3 {
+            margin-top: 0;
+            color: #d40000;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .weather-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-left: 4px solid #d40000;
             border-radius: 4px;
-            display: inline-block;
-            margin: 1rem;
         }
-        .social-links {
+
+        .weather-icon {
+            font-size: 2rem;
+        }
+
+        .weather-details {
+            line-height: 1.4;
+        }
+
+        .weather-temp {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .location-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .location-header {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            font-weight: bold;
+        }
+
+        .location-content {
+            padding: 1.5rem;
+        }
+
+        .location-address {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 1rem 0;
+            gap: 0.8rem;
         }
-        .social-link {
-            color: white;
-            text-decoration: none;
+
+        .action-button {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            padding: 0.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
             transition: background-color 0.3s;
         }
-        .social-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+
+        .directions-button {
+            background-color: #4285f4;
+            color: white;
         }
-        .social-icon {
-            font-size: 1.2rem;
-            width: 20px;
+
+        .directions-button:hover {
+            background-color: #3367d6;
+        }
+
+        .reviews-button {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .reviews-button:hover {
+            background-color: #e9ecef;
+        }
+
+        .save-button {
+            background-color: #34a853;
+            color: white;
+        }
+
+        .save-button:hover {
+            background-color: #2d9248;
+        }
+
+        .share-button {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .share-button:hover {
+            background-color: #e9ecef;
+        }
+
+        .search-form {
             text-align: center;
+            margin: 2rem auto;
+            max-width: 600px;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        
+
+        .search-form input {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+            margin-right: 0.5rem;
+        }
+
+        .search-form button {
+            padding: 0.8rem 1.5rem;
+            background-color: #d40000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-form button:hover {
+            background-color: #b30000;
+        }
+
         /* Lightbox styles */
         .lightbox {
             display: none;
@@ -102,6 +273,7 @@
             background-color: rgba(0,0,0,0.8);
             text-align: center;
         }
+
         .lightbox-content {
             max-width: 90%;
             max-height: 90%;
@@ -111,12 +283,14 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
         .lightbox-img {
             max-height: 80vh;
             max-width: 80vw;
             border: 3px solid white;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
+
         .close-lightbox {
             position: absolute;
             top: 20px;
@@ -125,6 +299,7 @@
             font-size: 30px;
             cursor: pointer;
         }
+
         .lightbox-nav {
             position: absolute;
             width: 100%;
@@ -133,6 +308,7 @@
             top: 50%;
             transform: translateY(-50%);
         }
+
         .lightbox-nav button {
             background: rgba(0,0,0,0.5);
             color: white;
@@ -142,143 +318,317 @@
             cursor: pointer;
             margin: 0 20px;
         }
+
+        /* Footer styles */
+        .footer {
+            background-color: #222;
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: #d40000;
+        }
+
+        .admin-link {
+            display: inline-block;
+            margin: 1rem 0;
+            padding: 0.8rem 1.5rem;
+            background-color: #d40000;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .admin-link:hover {
+            background-color: #b30000;
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .event-container {
+                flex-direction: column;
+            }
+            
+            .info-sidebar {
+                flex: 1 1 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>SW MBANGA SCHOOL</h1>
-        <p>Mcubakazi Township, Butterworth, Eastern Cape</p>
-    </div>
 
-    <main>
-        <h2 style="text-align: center;">LATEST EVENTS</h2>
-        
-        <div class="events-container">
+<div class="header">
+    <h1>SW MBANGA JS SCHOOL</h1>
+</div>
+
+<div class="main-container">
+    <!-- Search Form -->
+    <form class="search-form" method="get" action="{% url 'search_events' %}">
+        <input type="number" name="year" placeholder="Enter year" required>
+        <button type="submit">Search Events</button>
+    </form>
+
+    <div class="event-container">
+        <!-- Main Event Content -->
+        <div class="event-card">
             {% for event in events %}
-            <div class="event-card">
-                {% if event.photos.all %}
-                <img src="{{ event.photos.first.image.url }}" 
-                     class="event-image" 
-                     alt="{{ event.title }}"
-                     onclick="openLightbox('{{ event.photos.first.image.url }}')">
-                {% endif %}
+                <div class="event-image-container">
+                    {% if event.photos.all %}
+                        <img src="{{ event.photos.first.image.url }}" 
+                             class="event-image" 
+                             alt="{{ event.title }}"
+                             onclick="openLightbox('{{ event.photos.first.image.url }}')">
+                    {% else %}
+                        <img src="{% static 'images/default-event.jpg' %}" class="event-image" alt="No photo">
+                    {% endif %}
+                </div>
+
                 <div class="event-content">
                     <h3 class="event-title">{{ event.title }}</h3>
-                    <p>{{ event.description }}</p>
-                    <small>Posted on: {{ event.date_posted|date:"M d, Y" }}</small>
+                    <p class="event-description">{{ event.description }}</p> <!-- Full description displayed -->
+                    <p class="event-date">Posted on: {{ event.date_posted|date:"M d, Y" }}</p>
                     
-                    <!-- Thumbnail gallery for all event photos -->
-                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">
-                        {% for photo in event.photos.all %}
-                        <img src="{{ photo.image.url }}" 
-                             style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;" 
-                             onclick="openLightbox('{{ photo.image.url }}')">
-                        {% endfor %}
-                    </div>
+                    <!-- Thumbnail gallery -->
+                    {% if event.photos.all %}
+                        <div class="thumbnail-gallery">
+                            {% for photo in event.photos.all %}
+                                <img src="{{ photo.image.url }}" 
+                                     class="thumbnail" 
+                                     onclick="openLightbox('{{ photo.image.url }}')">
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-            </div>
             {% empty %}
-            <p>No events found</p>
+                <div class="event-content">
+                    <h3 class="event-title">No Events Available</h3>
+                    <p class="event-description">Check back later for upcoming events.</p>
+                </div>
             {% endfor %}
         </div>
 
-        <form method="get" action="{% url 'search_events' %}" style="text-align: center; margin: 2rem;">
-            <input type="number" name="year" placeholder="Enter year" required>
-            <button type="submit">Search Events</button>
-        </form>
-    </main>
+        <!-- Sidebar with Weather and Location Info -->
+        <div class="info-sidebar">
+            <!-- Weather Card -->
+            <div class="info-card">
+                <h3>Current Weather</h3>
+                <div class="weather-box">
+                    <div class="weather-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <div class="weather-details">
+                        <div class="weather-temp">Loading...</div>
+                        <div class="weather-location">Butterworth, EC</div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Lightbox HTML -->
-    <div id="lightbox" class="lightbox">
-        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-        <div class="lightbox-nav">
-            <button onclick="changeImage(-1)">❮</button>
-            <button onclick="changeImage(1)">❯</button>
-        </div>
-        <div class="lightbox-content">
-            <img id="lightbox-img" class="lightbox-img" src="">
+            <!-- Location Card -->
+            <div class="location-card">
+                <div class="location-header">
+                    SW MBANGA JS SCHOOL
+                </div>
+                <div class="location-content">
+                    <div class="location-address">
+                        <p><strong>School in Butterworth, Eastern Cape</strong></p>
+                        <p>Address: Mcubakazi Township, Butterworth, Gcuwa, 4960</p>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <a href="https://maps.google.com/?q=Mcubakazi+Township,+Butterworth,+Eastern+Cape" 
+                           target="_blank" class="action-button directions-button">
+                            <i class="fas fa-directions"></i> Directions
+                        </a>
+                        <a href="#" class="action-button reviews-button">
+                            <i class="fas fa-star"></i> Reviews
+                        </a>
+                        <a href="#" class="action-button save-button">
+                            <i class="fas fa-bookmark"></i> Save
+                        </a>
+                        <a href="#" class="action-button share-button">
+                            <i class="fas fa-share-alt"></i> Share
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="footer">
-        <div class="social-links">
-            <a href="#" class="social-link">
-                <span class="social-icon"><i class="fas fa-info-circle"></i></span>
-                About Us
-            </a>
-            <a href="#" class="social-link">
-                <span class="social-icon"><i class="fab fa-facebook-f"></i></span>
-                Facebook
-            </a>
-            <a href="#" class="social-link">
-                <span class="social-icon"><i class="fab fa-twitter"></i></span>
-                Twitter
-            </a>
-            <a href="#" class="social-link">
-                <span class="social-icon"><i class="fab fa-instagram"></i></span>
-                Instagram
-            </a>
-        </div>
-        <a href="/admin" class="admin-link">ADMIN LOGIN</a>
-        <p>&copy; SW Mbanga School {{ current_year }}</p>
+<!-- Lightbox HTML -->
+<div id="lightbox" class="lightbox">
+    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-nav">
+        <button onclick="changeImage(-1)">❮</button>
+        <button onclick="changeImage(1)">❯</button>
     </div>
+    <div class="lightbox-content">
+        <img id="lightbox-img" class="lightbox-img" src="">
+    </div>
+</div>
 
-    <script>
-        // Lightbox functionality
-        let currentImageIndex = 0;
-        let images = [];
-        
-        function openLightbox(imageSrc) {
-            // Get all images on the page
-            const allImages = document.querySelectorAll('.event-image, .event-content img');
-            images = Array.from(allImages).map(img => img.src);
-            
-            // Find the clicked image index
-            currentImageIndex = images.indexOf(imageSrc);
-            
-            // Display the lightbox
-            document.getElementById('lightbox').style.display = 'block';
-            document.getElementById('lightbox-img').src = imageSrc;
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
-        
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
-        }
-        
-        function changeImage(step) {
-            currentImageIndex += step;
-            
-            // Wrap around if at beginning/end
-            if (currentImageIndex >= images.length) {
-                currentImageIndex = 0;
-            } else if (currentImageIndex < 0) {
-                currentImageIndex = images.length - 1;
-            }
-            
-            document.getElementById('lightbox-img').src = images[currentImageIndex];
-        }
-        
-        // Close lightbox when clicking outside image
-        document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLightbox();
-            }
+<!-- Footer -->
+<div class="footer">
+    <div class="social-links">
+        <a href="#" class="social-link">
+            <i class="fas fa-info-circle"></i>
+        </a>
+        <a href="#" class="social-link">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="social-link">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="social-link">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+    <a href="/admin" class="admin-link">ADMIN LOGIN</a>
+    <p class="copyright">&copy; SW Mbanga JS School {{ current_year }}. All rights reserved.</p>
+</div>
+
+<script>
+    // Fetch live weather for Butterworth
+    const WEATHER_API = "https://api.open-meteo.com/v1/forecast?latitude=-32.4095&longitude=27.3618&current_weather=true";
+
+    fetch(WEATHER_API)
+        .then(response => response.json())
+        .then(data => {
+            const temp = data.current_weather.temperature;
+            const code = data.current_weather.weathercode;
+
+            const weatherIcons = {
+                0: "fas fa-sun",         // Clear sky
+                1: "fas fa-cloud-sun",    // Mainly clear
+                2: "fas fa-cloud-sun",    // Partly cloudy
+                3: "fas fa-cloud",        // Overcast
+                45: "fas fa-smog",        // Fog
+                48: "fas fa-smog",        // Depositing rime fog
+                51: "fas fa-cloud-rain",  // Light drizzle
+                53: "fas fa-cloud-rain",  // Moderate drizzle
+                55: "fas fa-cloud-rain",  // Dense drizzle
+                56: "fas fa-snowflake",   // Light freezing drizzle
+                57: "fas fa-snowflake",   // Dense freezing drizzle
+                61: "fas fa-cloud-rain",  // Slight rain
+                63: "fas fa-cloud-rain",  // Moderate rain
+                65: "fas fa-cloud-showers-heavy", // Heavy rain
+                66: "fas fa-snowflake",   // Light freezing rain
+                67: "fas fa-snowflake",   // Heavy freezing rain
+                71: "fas fa-snowflake",   // Slight snow
+                73: "fas fa-snowflake",   // Moderate snow
+                75: "fas fa-snowflake",   // Heavy snow
+                77: "fas fa-snowflake",   // Snow grains
+                80: "fas fa-cloud-showers-heavy", // Slight rain showers
+                81: "fas fa-cloud-showers-heavy", // Moderate rain showers
+                82: "fas fa-cloud-showers-heavy", // Violent rain showers
+                85: "fas fa-snowflake",   // Slight snow showers
+                86: "fas fa-snowflake",   // Heavy snow showers
+                95: "fas fa-bolt",        // Thunderstorm
+                96: "fas fa-bolt",        // Thunderstorm with slight hail
+                99: "fas fa-bolt"        // Thunderstorm with heavy hail
+            };
+
+            const weatherDescriptions = {
+                0: "Clear sky",
+                1: "Mainly clear",
+                2: "Partly cloudy",
+                3: "Overcast",
+                45: "Fog",
+                48: "Rime fog",
+                51: "Light drizzle",
+                53: "Moderate drizzle",
+                55: "Dense drizzle",
+                56: "Light freezing drizzle",
+                57: "Dense freezing drizzle",
+                61: "Slight rain",
+                63: "Moderate rain",
+                65: "Heavy rain",
+                66: "Light freezing rain",
+                67: "Heavy freezing rain",
+                71: "Slight snow",
+                73: "Moderate snow",
+                75: "Heavy snow",
+                77: "Snow grains",
+                80: "Slight rain showers",
+                81: "Moderate rain showers",
+                82: "Violent rain showers",
+                85: "Slight snow showers",
+                86: "Heavy snow showers",
+                95: "Thunderstorm",
+                96: "Thunderstorm with hail",
+                99: "Thunderstorm with heavy hail"
+            };
+
+            const iconClass = weatherIcons[code] || "fas fa-cloud-sun";
+            const description = weatherDescriptions[code] || "Fair weather";
+
+            document.querySelector(".weather-icon").className = "weather-icon " + iconClass;
+            document.querySelector(".weather-temp").innerHTML = `${temp}°C - ${description}`;
+        })
+        .catch(err => {
+            console.error("Failed to fetch weather:", err);
+            document.querySelector(".weather-temp").innerText = "Weather data unavailable";
         });
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (document.getElementById('lightbox').style.display === 'block') {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                } else if (e.key === 'ArrowLeft') {
-                    changeImage(-1);
-                } else if (e.key === 'ArrowRight') {
-                    changeImage(1);
-                }
-            }
-        });
-    </script>
+
+    // Lightbox functionality
+    let currentImageIndex = 0;
+    let images = [];
+
+    function openLightbox(imageSrc) {
+        const allImages = document.querySelectorAll('.event-image, .thumbnail');
+        images = Array.from(allImages).map(img => img.src);
+        currentImageIndex = images.indexOf(imageSrc);
+        document.getElementById('lightbox').style.display = 'block';
+        document.getElementById('lightbox-img').src = imageSrc;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function changeImage(step) {
+        currentImageIndex += step;
+        if (currentImageIndex >= images.length) currentImageIndex = 0;
+        else if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+        document.getElementById('lightbox-img').src = images[currentImageIndex];
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+        if (e.target === this) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (document.getElementById('lightbox').style.display === 'block') {
+            if (e.key === 'Escape') closeLightbox();
+            else if (e.key === 'ArrowLeft') changeImage(-1);
+            else if (e.key === 'ArrowRight') changeImage(1);
+        }
+    });
+</script>
+
 </body>
 </html>

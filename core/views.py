@@ -9,3 +9,6 @@ def home(request):
         'events': events,
         'current_year': current_year
     })
+
+#events directory
+
