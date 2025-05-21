@@ -70,7 +70,7 @@ SECRET_KEY = 'your-secret-key-here'  # Keep this secret!
 
 DEBUG = True  # Set to False in production
 
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']  # Add your domain in production
+ALLOWED_HOSTS = []  # Add your domain in production
 
 
 TEMPLATES = [
